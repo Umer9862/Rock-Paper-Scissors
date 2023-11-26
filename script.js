@@ -1,4 +1,5 @@
 const CHOICES = ["rock", "paper", "scissors"];
+const TOTAL_ROUNDS = 10;
 const ROUNDS_TO_WIN = 5;
 
 const getComputerChoice = () => {
@@ -27,7 +28,7 @@ const gameLogic = () => {
   let playerScore = 0;
   let computerScore = 0;
 
-  for (let index = 0; index < ROUNDS_TO_WIN; index++) {
+  for (let index = 0; index <= TOTAL_ROUNDS; index++) {
     const playerChoice = getUserChoice();
     const computerChoice = getComputerChoice();
     const roundResult = playRound(playerChoice, computerChoice);
