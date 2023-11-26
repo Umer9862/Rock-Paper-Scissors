@@ -1,6 +1,8 @@
+const CHOICES = ["rock", "paper", "scissors"];
+const ROUNDS_TO_WIN = 5;
+
 const getComputerChoice = () => {
-  const choices = ["rock", "paper", "scissors"];
-  return choices[Math.floor(Math.random() * 3)];
+  return CHOICES[Math.floor(Math.random() * CHOICES.length)];
 };
 
 const playRound = (userChoice, computerChoice) => {
@@ -17,26 +19,30 @@ const playRound = (userChoice, computerChoice) => {
   }
 };
 
+const getUserChoice = () => {
+  return prompt("rock, paper, scissors").toLowerCase();
+};
+
 const gameLogic = () => {
   let playerScore = 0;
   let computerScore = 0;
 
-  for (let index = 0; index < 5; index++) {
-    const playerChoice = prompt("rock, paper, scissors").toLowerCase();
-    const ComputerChoice = getComputerChoice();
-    const roundResult = playRound(playerChoice, ComputerChoice);
+  for (let index = 0; index < ROUNDS_TO_WIN; index++) {
+    const playerChoice = getUserChoice();
+    const computerChoice = getComputerChoice();
+    const roundResult = playRound(playerChoice, computerChoice);
 
     console.log(roundResult.result);
 
     if (roundResult.result === "you win") {
       playerScore++;
-      console.log("Player Score: " + playerScore);
+      console.log(`Player Score: ${playerScore}`);
     } else if (roundResult.result === "you lose") {
       computerScore++;
-      console.log("Computer Score: " + computerScore);
+      console.log(`Computer Score: ${computerScore}`);
     }
 
-    if (playerScore === 5 || computerScore === 5) {
+    if (playerScore === ROUNDS_TO_WIN || computerScore === ROUNDS_TO_WIN) {
       break;
     }
   }
